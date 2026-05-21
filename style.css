@@ -1,0 +1,165 @@
+:root {
+  --fg: #1a1a1a;
+  --bg: #ffffff;
+  --muted: #666666;
+  --accent: #1e6b2a;
+  --border: #e5e5e5;
+  --warn-bg: #fff8db;
+  --warn-border: #b58900;
+  --warn-fg: #5c4a00;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #ececec;
+    --bg: #0f0f0f;
+    --muted: #9a9a9a;
+    --accent: #5fd96b;
+    --border: #2a2a2a;
+    --warn-bg: #3a2f00;
+    --warn-border: #b58900;
+    --warn-fg: #f4dc7a;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+  line-height: 1.6;
+  font-size: 17px;
+}
+
+main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.02em;
+}
+
+.hero h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.tagline {
+  font-size: 1.25rem;
+  color: var(--muted);
+  margin: 0 0 2.5rem;
+}
+
+.screenshots {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 2rem 0 3rem;
+}
+
+.screenshots img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  display: block;
+}
+
+.prose p {
+  max-width: 65ch;
+}
+
+.features {
+  max-width: 65ch;
+  padding-left: 1.25rem;
+}
+
+.features li {
+  margin-bottom: 0.5rem;
+}
+
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+footer nav a {
+  margin-right: 1.5rem;
+}
+
+@media (max-width: 720px) {
+  main { padding: 2rem 1.25rem 3rem; }
+  .screenshots { grid-template-columns: repeat(2, 1fr); }
+  .hero h1 { font-size: 2rem; }
+  .tagline { font-size: 1.1rem; }
+}
+
+/* privacy / policy specific */
+.draft-banner {
+  background: var(--warn-bg);
+  border: 2px solid var(--warn-border);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0 2rem;
+  color: var(--warn-fg);
+  font-size: 0.95rem;
+}
+
+.draft-banner ol {
+  padding-left: 1.25rem;
+}
+
+.policy h1 {
+  font-size: 2rem;
+  margin: 0 0 0.5rem;
+}
+
+.policy h2 {
+  margin-top: 2.5rem;
+  font-size: 1.3rem;
+}
+
+.policy .meta {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0 0 2rem;
+}
+
+.policy table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.policy table th,
+.policy table td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.policy code {
+  background: var(--border);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}

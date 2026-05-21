@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy &mdash; IFMachine</title>
+  <meta name="description" content="IFMachine privacy policy. No analytics, advertising, crash reporting, or tracking SDKs.">
+  <meta name="robots" content="noindex"><!-- staging draft; remove on publish -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="policy">
+    <header class="hero">
+      <h1><a href="index.html">IFMachine</a></h1>
+      <p class="tagline">Privacy policy</p>
+    </header>
+
+    <div class="draft-banner">
+      <p><strong>&#9888; DRAFT &mdash; NOT FOR PUBLICATION.</strong></p>
+      <p><strong>Before publishing this document, do both of the following:</strong></p>
+      <ol>
+        <li>
+          Resolve every templated marker (text wrapped in double curly
+          braces) in the body of this document. There are three distinct
+          values, in five locations:
+          <ul>
+            <li><code>EFFECTIVE_DATE</code> &mdash; publication date. Two
+              locations (effective date and last-updated date). Fill on the
+              day you publish.</li>
+            <li><code>COMPANY_LEGAL_NAME</code> &mdash; legal entity name,
+              must match the DUNS record exactly. Two locations (intro and
+              contact section).</li>
+            <li><code>COMPANY_MAILING_ADDRESS</code> &mdash; legal mailing
+              address, must match the DUNS record. One location (contact
+              section).</li>
+          </ul>
+        </li>
+        <li>Delete this entire banner. It is for working-draft use only and
+          must not appear in the published policy.</li>
+      </ol>
+      <p>
+        <strong>Publish-time verification:</strong> after performing
+        steps&nbsp;1 and&nbsp;2, the command
+        <code>grep -n '{' privacy.html</code> should produce no output.
+      </p>
+    </div>
+
+    <p class="meta">
+      <strong>Effective date:</strong> {{EFFECTIVE_DATE &mdash; fill in on publish}}<br>
+      <strong>Last updated:</strong> {{EFFECTIVE_DATE &mdash; same as above}}
+    </p>
+
+    <p>
+      IFMachine is an Android app for playing interactive-fiction games
+      (Z-machine and Glulx story files) published by
+      {{COMPANY_LEGAL_NAME &mdash; match DUNS record}} ("we", "us"). This
+      policy explains, in plain language, what data the app touches and
+      what it does with it.
+    </p>
+
+    <p>
+      The short version: <strong>IFMachine does not contain analytics,
+      advertising, crash-reporting, or tracking SDKs of any kind.</strong>
+      It stores your game progress and settings on your device, optionally
+      syncs your saves to your own Google Drive if you turn that on, and
+      contacts the Interactive Fiction Database (IFDB) only when you
+      explicitly search for a game or pick cover art.
+    </p>
+
+    <p>If you want the long version, read on.</p>
+
+    <h2>1. What we don't do</h2>
+
+    <p>
+      We do not operate any servers that collect data from IFMachine. We do
+      not transmit any of the following to any server we control:
+    </p>
+    <ul>
+      <li>Your name, contact details, phone number, or physical address</li>
+      <li>Your physical or device location (the app requests no location permissions)</li>
+      <li>Your device's advertising ID, IMEI, MAC address, or other hardware identifiers</li>
+      <li>Analytics events, usage telemetry, session data, or interaction logs</li>
+      <li>Crash reports</li>
+      <li>Any data for marketing, profiling, or third-party sharing</li>
+    </ul>
+    <p>
+      The app does not include Firebase Analytics, Crashlytics, Google
+      Analytics, AdMob, the Facebook SDK, or any comparable tracking
+      library.
+    </p>
+    <p>
+      The two situations in which information <em>does</em> leave your
+      device are described in &sect;3 (optional Google Drive sync of save
+      files) and &sect;4 (optional IFDB lookups). Both are off by default
+      and require an explicit action by you. Section&nbsp;2 lists what the
+      app stores <strong>locally on your device</strong> &mdash; including
+      the Google account name once you connect Drive sync, which is kept
+      on-device so the Settings screen can show you which account is
+      linked.
+    </p>
+
+    <h2>2. What is stored on your device</h2>
+
+    <p>
+      IFMachine stores the following on your device only (in the app's
+      private storage area, not accessible to other apps):
+    </p>
+    <ul>
+      <li><strong>Game files</strong> you import or download
+        (<code>.z3</code>&ndash;<code>.z8</code>, <code>.ulx</code>,
+        <code>.zblorb</code>, etc.)</li>
+      <li><strong>Save files and autosaves</strong> generated as you play</li>
+      <li><strong>Library metadata</strong> &mdash; title, author, IFID
+        identifier, import date, and the path to any cover art you
+        selected</li>
+      <li><strong>Cover art images</strong> you select (either from Blorb
+        resources embedded in the game file, or from IFDB via the
+        cover-art picker)</li>
+      <li><strong>App settings</strong> &mdash; theme, font, map style,
+        navigation panel position, etc.</li>
+      <li><strong>A debug log</strong> (<code>ifminput.log</code>) &mdash;
+        diagnostic markers and unimplemented opcode traces used for
+        development. The log may contain game text and player commands; it
+        never contains personal identifying information. The log stays on
+        your device unless you choose to export it via the Debug tab.</li>
+      <li><strong>An install identifier (UUID)</strong> &mdash; a random
+        identifier generated once when you first install the app. It is
+        used inside save files to distinguish your devices when resolving
+        cloud sync conflicts. It is not tied to your name, account, or any
+        external identity.</li>
+      <li><strong>Connected Google account name</strong> &mdash;
+        <em>only if you enable Drive sync in Settings</em> &mdash; the
+        Google account name (usually an email address) of the account you
+        signed in with. It is stored locally so the Settings screen can
+        display which account is currently connected. It is never sent to
+        any server we operate; see &sect;3 for how it is used by Google's
+        own Drive authentication flow.</li>
+    </ul>
+    <p>
+      This data lives in the app's private storage and is removed when you
+      uninstall the app.
+    </p>
+
+    <h2>3. Cloud sync with Google Drive (optional)</h2>
+
+    <p>
+      If you enable cloud sync in Settings, IFMachine will sync your
+      <strong>save files only</strong> to a folder of your choice in your
+      own Google Drive. To do this:
+    </p>
+    <ul>
+      <li>You pick a Google account and a Drive folder using the standard
+        Android system pickers. We never see your password.</li>
+      <li>The app requests the <strong><code>drive.file</code></strong>
+        OAuth scope, which means it can only read and write files it has
+        created in your Drive &mdash; it cannot see your other Drive
+        content.</li>
+      <li>Only save files are uploaded. Your library metadata, preferences,
+        cover art, and debug logs are <strong>not</strong> uploaded.</li>
+      <li>Your install identifier is embedded inside each save file's
+        metadata chunk to detect conflicts between devices. It stays in
+        the save file if the save is uploaded.</li>
+      <li>The Google account email address you signed in with is shown in
+        IFMachine's Settings screen so you know which account is connected.
+        It is stored locally on your device and sent only to Google's own
+        servers as part of the standard OAuth flow.</li>
+      <li>You can turn sync off, change folders, or sign out of Drive at
+        any time from Settings. Files already uploaded remain in your
+        Drive until you delete them yourself.</li>
+    </ul>
+    <p>
+      We do not run any servers that receive your save data. Saves go
+      directly between your device and your own Google Drive.
+    </p>
+
+    <h2>4. IFDB integration (optional)</h2>
+
+    <p>
+      When you search for a game in the <strong>Browse</strong> screen,
+      use the <strong>cover art picker</strong>, or download a game from
+      the Interactive Fiction Database
+      (<a href="https://ifdb.org">ifdb.org</a>), IFMachine makes HTTPS
+      requests to ifdb.org to fetch search results, game metadata, or
+      cover-art thumbnails. These requests:
+    </p>
+    <ul>
+      <li>Are only made when you take an explicit action (search, pick
+        cover art, download a game)</li>
+      <li>Contain only the search terms you typed, or the IFDB identifier
+        (TUID) of a specific game</li>
+      <li>Do <strong>not</strong> include your name, email, account,
+        device identifier, or any other information about you</li>
+      <li>Carry a generic <code>User-Agent</code> header of
+        <code>IFMachine-Android/0.1</code> (no device model, Android
+        version, or other identifying info)</li>
+    </ul>
+    <p>
+      Story files you download from IFDB may be hosted on third-party
+      archives (such as the Internet Fiction Archive). Downloading a game
+      causes IFMachine to retrieve the file from that host using a standard
+      HTTPS request.
+    </p>
+    <p>
+      We do not control ifdb.org or the archives it links to. Their
+      respective privacy policies apply to data they receive (which from
+      IFMachine is limited to the request information listed above).
+    </p>
+
+    <h2>5. Permissions</h2>
+
+    <p>IFMachine requests two Android permissions:</p>
+    <table>
+      <thead>
+        <tr><th>Permission</th><th>Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>INTERNET</code></td>
+          <td>Cloud sync to your Google Drive (if enabled) and IFDB requests (when you initiate them)</td>
+        </tr>
+        <tr>
+          <td><code>ACCESS_NETWORK_STATE</code></td>
+          <td>Detect whether you are on Wi-Fi vs. cellular, so cloud sync can respect a Wi-Fi-only preference</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      We do not request location, camera, microphone, contacts, phone,
+      calendar, or sensor permissions.
+    </p>
+
+    <h2>6. Children's privacy</h2>
+
+    <p>
+      IFMachine does not knowingly collect personal information from
+      anyone, including children under 13. The app does not ask for age,
+      does not show advertising, and does not collect any data that would
+      identify a user.
+    </p>
+    <p>
+      Some interactive-fiction games available through IFDB are written
+      for adult audiences. IFMachine itself does not curate or rate game
+      content. Parents and guardians should supervise downloads of
+      third-party game files as they would any other internet content.
+    </p>
+
+    <h2>7. Data sharing</h2>
+
+    <p>
+      We do not sell, rent, trade, or share your data with anyone. We
+      don't collect data we could share.
+    </p>
+    <p>
+      The only third party that ever receives information
+      <em>from your use of IFMachine</em> is:
+    </p>
+    <ul>
+      <li><strong>Google</strong>, when you enable Drive sync (saves
+        uploaded to your own Drive) or when you sign in to a Google
+        account through the system account picker.</li>
+      <li><strong>IFDB&nbsp;/ IFArchive</strong>, when you explicitly
+        search or download (request contents listed in &sect;4).</li>
+    </ul>
+    <p>
+      In both cases, the data goes from your device directly to those
+      services; we do not see it.
+    </p>
+
+    <h2>8. Your choices</h2>
+
+    <ul>
+      <li><strong>Stop using cloud sync</strong>: turn it off in Settings.
+        Past saves remain in your Drive until you delete them.</li>
+      <li><strong>Delete your data</strong>: uninstalling IFMachine removes
+        all locally stored data (saves, settings, library, cover art,
+        logs). To delete cloud-synced saves, delete the synced folder in
+        your Google Drive.</li>
+      <li><strong>Use the app without an account</strong>: cloud sync is
+        opt-in. You can use every feature of IFMachine without ever
+        signing in.</li>
+    </ul>
+
+    <h2>9. Changes to this policy</h2>
+
+    <p>
+      If we change this policy, we'll update the "Last updated" date at
+      the top and publish the new version at this URL. Material changes
+      &mdash; for example, the future addition of crash reporting, error
+      metrics, or any other feature that transmits data off your device
+      &mdash; will be called out in the app's release notes. Where any
+      such change adds a data type, the Google Play Data Safety disclosure
+      for the app will be updated to match.
+    </p>
+
+    <h2>10. Contact</h2>
+
+    <p>Questions about this policy can be sent to:</p>
+    <p>
+      <strong><a href="mailto:privacy@guppyint.com">privacy@guppyint.com</a></strong>
+    </p>
+    <p>
+      {{COMPANY_LEGAL_NAME}}<br>
+      {{COMPANY_MAILING_ADDRESS &mdash; match DUNS record}}
+    </p>
+
+    <footer>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="support.html">Support</a>
+      </nav>
+    </footer>
+  </main>
+</body>
+</html>
