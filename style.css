@@ -115,20 +115,6 @@ footer nav a {
 }
 
 /* privacy / policy specific */
-.draft-banner {
-  background: var(--warn-bg);
-  border: 2px solid var(--warn-border);
-  border-radius: 8px;
-  padding: 1rem 1.25rem;
-  margin: 1.5rem 0 2rem;
-  color: var(--warn-fg);
-  font-size: 0.95rem;
-}
-
-.draft-banner ol {
-  padding-left: 1.25rem;
-}
-
 .policy h1 {
   font-size: 2rem;
   margin: 0 0 0.5rem;

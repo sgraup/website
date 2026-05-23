@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Privacy Policy &mdash; IFMachine</title>
   <meta name="description" content="IFMachine privacy policy. No analytics, advertising, crash reporting, or tracking SDKs.">
-  <meta name="robots" content="noindex"><!-- staging draft; remove on publish -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,56 +14,31 @@
       <p class="tagline">Privacy policy</p>
     </header>
 
-    <div class="draft-banner">
-      <p><strong>&#9888; DRAFT &mdash; NOT FOR PUBLICATION.</strong></p>
-      <p><strong>Before publishing this document, do both of the following:</strong></p>
-      <ol>
-        <li>
-          Resolve every templated marker (text wrapped in double curly
-          braces) in the body of this document. There are three distinct
-          values, in five locations:
-          <ul>
-            <li><code>EFFECTIVE_DATE</code> &mdash; publication date. Two
-              locations (effective date and last-updated date). Fill on the
-              day you publish.</li>
-            <li><code>COMPANY_LEGAL_NAME</code> &mdash; legal entity name,
-              must match the DUNS record exactly. Two locations (intro and
-              contact section).</li>
-            <li><code>COMPANY_MAILING_ADDRESS</code> &mdash; legal mailing
-              address, must match the DUNS record. One location (contact
-              section).</li>
-          </ul>
-        </li>
-        <li>Delete this entire banner. It is for working-draft use only and
-          must not appear in the published policy.</li>
-      </ol>
-      <p>
-        <strong>Publish-time verification:</strong> after performing
-        steps&nbsp;1 and&nbsp;2, the command
-        <code>grep -n '{' privacy.html</code> should produce no output.
-      </p>
-    </div>
-
     <p class="meta">
-      <strong>Effective date:</strong> {{EFFECTIVE_DATE &mdash; fill in on publish}}<br>
-      <strong>Last updated:</strong> {{EFFECTIVE_DATE &mdash; same as above}}
+      <strong>Effective date:</strong> 2026-05-23<br>
+      <strong>Last updated:</strong> 2026-05-23
     </p>
 
     <p>
       IFMachine is an Android app for playing interactive-fiction games
       (Z-machine and Glulx story files) published by
-      {{COMPANY_LEGAL_NAME &mdash; match DUNS record}} ("we", "us"). This
+      Guppy Interactive LLC ("we", "us"). This
       policy explains, in plain language, what data the app touches and
       what it does with it.
     </p>
 
     <p>
-      The short version: <strong>IFMachine does not contain analytics,
-      advertising, crash-reporting, or tracking SDKs of any kind.</strong>
-      It stores your game progress and settings on your device, optionally
-      syncs your saves to your own Google Drive if you turn that on, and
+      The short version: <strong>IFMachine contains no advertising,
+      marketing, or behavioural-analytics SDKs.</strong> The current
+      closed-testing (beta) build uses Sentry for crash and error
+      reporting so we can diagnose issues testers encounter; what Sentry
+      receives is described in &sect;5. Otherwise, the app stores your
+      game progress and settings on your device, optionally syncs your
+      per-story content (saves, transcripts, maps, and game-managed
+      sidecar files) to your own Google Drive if you turn that on, and
       contacts the Interactive Fiction Database (IFDB) only when you
-      explicitly search for a game or pick cover art.
+      explicitly search for a game, view cover art, or download a story
+      file.
     </p>
 
     <p>If you want the long version, read on.</p>
@@ -72,31 +46,46 @@
     <h2>1. What we don't do</h2>
 
     <p>
-      We do not operate any servers that collect data from IFMachine. We do
-      not transmit any of the following to any server we control:
+      We do not operate any servers that collect data from IFMachine. We
+      do not transmit any of the following to any server we operate, and
+      the app does not include any third-party library that would
+      transmit them on our behalf:
     </p>
     <ul>
       <li>Your name, contact details, phone number, or physical address</li>
       <li>Your physical or device location (the app requests no location permissions)</li>
       <li>Your device's advertising ID, IMEI, MAC address, or other hardware identifiers</li>
-      <li>Analytics events, usage telemetry, session data, or interaction logs</li>
-      <li>Crash reports</li>
-      <li>Any data for marketing, profiling, or third-party sharing</li>
+      <li>Continuous background analytics, usage telemetry, session
+        data, screen-view tracking, or button-tap tracking sent in real
+        time while the app is running (the short breadcrumb trail
+        described in &sect;5 is captured locally and sent to Sentry only
+        when the app crashes)</li>
+      <li>Any data for marketing, profiling, or behavioural advertising</li>
     </ul>
     <p>
-      The app does not include Firebase Analytics, Crashlytics, Google
-      Analytics, AdMob, the Facebook SDK, or any comparable tracking
-      library.
+      The app does not include Firebase Analytics, Firebase Crashlytics,
+      Google Analytics, AdMob, the Facebook SDK, Bugsnag, or any
+      comparable behavioural-tracking library. Crash and error data the
+      app does send (to Sentry, in the current closed-testing build) is
+      described in &sect;5.
     </p>
     <p>
-      The two situations in which information <em>does</em> leave your
-      device are described in &sect;3 (optional Google Drive sync of save
-      files) and &sect;4 (optional IFDB lookups). Both are off by default
-      and require an explicit action by you. Section&nbsp;2 lists what the
-      app stores <strong>locally on your device</strong> &mdash; including
-      the Google account name once you connect Drive sync, which is kept
-      on-device so the Settings screen can show you which account is
-      linked.
+      Note that Android itself also collects basic crash and ANR
+      (application-not-responding) telemetry for apps installed via
+      Google Play; that data goes to Google as part of the Play
+      platform under Google's own privacy terms, not under this policy.
+    </p>
+    <p>
+      The situations in which information <em>does</em> leave your
+      device are described in &sect;3 (optional Google Drive sync of
+      your per-story content), &sect;4 (optional IFDB lookups), and
+      &sect;5 (Sentry crash reporting, always-on in the current
+      closed-testing build). &sect;3 and &sect;4 are off by default and
+      require an explicit action by you. Section&nbsp;2 lists what the
+      app stores <strong>locally on your device</strong> &mdash;
+      including the Google account name once you connect Drive sync,
+      which is kept on-device so the Settings screen can show you which
+      account is linked.
     </p>
 
     <h2>2. What is stored on your device</h2>
@@ -120,9 +109,17 @@
         navigation panel position, etc.</li>
       <li><strong>A debug log</strong> (<code>ifminput.log</code>) &mdash;
         diagnostic markers and unimplemented opcode traces used for
-        development. The log may contain game text and player commands; it
-        never contains personal identifying information. The log stays on
-        your device unless you choose to export it via the Debug tab.</li>
+        development. The log records game text shown to you and the
+        commands you type into games. Because game commands are
+        free-form text, the log can contain any personal information
+        you happen to type into a game (for example a name, an email
+        address, or a password-like string). The log stays in the app's
+        private storage and never leaves your device unless you
+        explicitly export it via the Debug tab. Exporting uses the
+        Android share sheet, which lets you pick the destination
+        (email, file save, messaging app, etc.); the log content goes
+        wherever you send it. To remove the log, uninstall the app or
+        clear app data in Android Settings.</li>
       <li><strong>An install identifier (UUID)</strong> &mdash; a random
         identifier generated once when you first install the app. It is
         used inside save files to distinguish your devices when resolving
@@ -144,10 +141,32 @@
     <h2>3. Cloud sync with Google Drive (optional)</h2>
 
     <p>
-      If you enable cloud sync in Settings, IFMachine will sync your
-      <strong>save files only</strong> to a folder of your choice in your
-      own Google Drive. To do this:
+      If you enable cloud sync in Settings, IFMachine syncs your
+      <strong>per-story content</strong> to a folder of your choice in
+      your own Google Drive. The synced content for each game you play
+      includes every file the app or the running game writes for that
+      story:
     </p>
+    <ul>
+      <li><strong>Saves and autosaves</strong> &mdash; the snapshots of
+        game state created when you (or the game) issue a save command</li>
+      <li><strong>Transcripts</strong> &mdash; text logs of game output
+        and the commands you typed, for games that turn transcripting
+        on</li>
+      <li><strong>Maps</strong> &mdash; the auto-generated exploration
+        map the app builds as you visit rooms</li>
+      <li><strong>Game-managed sidecar files</strong> &mdash; files
+        certain games write directly to disk (for example, Kerkerkruip's
+        <code>storage</code> folder, Counterfeit Monkey's startup-data
+        file). These contain game-specific state and may include any
+        text you typed that the game chose to record.</li>
+    </ul>
+    <p>
+      Because game commands are free-form text, any of the above can
+      contain personal information if you type it into a game. We do not
+      inspect or filter the content.
+    </p>
+    <p>To make sync work:</p>
     <ul>
       <li>You pick a Google account and a Drive folder using the standard
         Android system pickers. We never see your password.</li>
@@ -155,8 +174,8 @@
         OAuth scope, which means it can only read and write files it has
         created in your Drive &mdash; it cannot see your other Drive
         content.</li>
-      <li>Only save files are uploaded. Your library metadata, preferences,
-        cover art, and debug logs are <strong>not</strong> uploaded.</li>
+      <li>The following are <strong>not</strong> uploaded: your library
+        metadata, app settings and preferences, or cover art images.</li>
       <li>Your install identifier is embedded inside each save file's
         metadata chunk to detect conflicts between devices. It stays in
         the save file if the save is uploaded.</li>
@@ -169,44 +188,119 @@
         Drive until you delete them yourself.</li>
     </ul>
     <p>
-      We do not run any servers that receive your save data. Saves go
+      We do not run any servers that receive this content. Files go
       directly between your device and your own Google Drive.
+    </p>
+
+    <p>
+      <strong>How the transfer is secured:</strong> all network
+      connections to Google Drive use HTTPS (TLS). Sign-in is handled
+      by Google's official Android libraries and the system account
+      picker; IFMachine never sees your Google password. The OAuth
+      credential the app holds afterwards is limited to the
+      <code>drive.file</code> scope (it can only touch files the app
+      itself created) and is managed by the Android
+      <code>AccountManager</code>. Locally, all of the files listed in
+      &sect;2 &mdash; including any not-yet-uploaded saves, transcripts,
+      maps, and sidecars &mdash; live in the app's private storage area,
+      which other apps on the device cannot read.
     </p>
 
     <h2>4. IFDB integration (optional)</h2>
 
     <p>
-      When you search for a game in the <strong>Browse</strong> screen,
-      use the <strong>cover art picker</strong>, or download a game from
-      the Interactive Fiction Database
-      (<a href="https://ifdb.org">ifdb.org</a>), IFMachine makes HTTPS
-      requests to ifdb.org to fetch search results, game metadata, or
-      cover-art thumbnails. These requests:
+      When you search for a game, view cover art, or download a story
+      file from the Interactive Fiction Database
+      (<a href="https://ifdb.org">ifdb.org</a>), IFMachine fetches that
+      content over HTTPS. The request contains only what's needed to
+      fulfill what you asked for &mdash; the search term you typed, the
+      IFDB identifier of a specific game, or the URL of a story file
+      &mdash; plus a generic <code>User-Agent</code> header of
+      <code>IFMachine-Android/0.1</code>. It does not include your name,
+      email, account, device identifier, or any other information about
+      you. IFMachine never writes, posts, rates, comments, uploads, or
+      modifies anything on IFDB; these are read-only requests.
     </p>
-    <ul>
-      <li>Are only made when you take an explicit action (search, pick
-        cover art, download a game)</li>
-      <li>Contain only the search terms you typed, or the IFDB identifier
-        (TUID) of a specific game</li>
-      <li>Do <strong>not</strong> include your name, email, account,
-        device identifier, or any other information about you</li>
-      <li>Carry a generic <code>User-Agent</code> header of
-        <code>IFMachine-Android/0.1</code> (no device model, Android
-        version, or other identifying info)</li>
-    </ul>
     <p>
       Story files you download from IFDB may be hosted on third-party
-      archives (such as the Internet Fiction Archive). Downloading a game
-      causes IFMachine to retrieve the file from that host using a standard
-      HTTPS request.
-    </p>
-    <p>
-      We do not control ifdb.org or the archives it links to. Their
-      respective privacy policies apply to data they receive (which from
-      IFMachine is limited to the request information listed above).
+      archives (such as the Internet Fiction Archive). Downloading a
+      game causes IFMachine to retrieve the file from that host using a
+      standard HTTPS request. We do not control ifdb.org or the archives
+      it links to; their respective privacy policies apply to data they
+      receive (which from IFMachine is limited to the request
+      information above).
     </p>
 
-    <h2>5. Permissions</h2>
+    <h2>5. Crash reporting (Sentry, closed-testing build)</h2>
+
+    <p>
+      The current closed-testing build of IFMachine ships with the
+      <strong>Sentry</strong> error-tracking SDK
+      (<a href="https://sentry.io">sentry.io</a>, US region, operated
+      by Functional Software, Inc.) enabled at app launch. Sentry
+      collects crash and error data and forwards it to us so we can
+      diagnose and fix problems during the closed-testing phase. There
+      is <strong>no in-app toggle</strong> for this in the current
+      build; if you do not want crash data sent to Sentry, do not
+      participate in the closed test. A toggle and/or first-launch
+      prompt will be added before any production release; this policy
+      will be updated at that time.
+    </p>
+    <p>
+      When the app crashes or hits an unhandled error, Sentry receives:
+    </p>
+    <ul>
+      <li>The stack trace and exception type</li>
+      <li>The IFMachine app version, build number, and release identifier</li>
+      <li>Device model (e.g. "Pixel 7"), manufacturer, CPU architecture,
+        Android version, screen resolution, available memory and
+        storage, locale, and timezone</li>
+      <li>A short trail of recent in-app events ("breadcrumbs") &mdash;
+        the most recent navigation, lifecycle, and log events before
+        the crash, used to help reproduce the issue. The default
+        breadcrumb trail does not include game text or your typed
+        commands; if we add breadcrumbs that capture player input in
+        the future, this policy will be updated.</li>
+    </ul>
+    <p>
+      Sentry does <strong>not</strong> receive your name, contact
+      details, the Google account you may have connected for Drive
+      sync, an advertising ID, IMEI, MAC address, location, or the
+      contents of the debug log described in &sect;2. The IFMachine
+      install identifier (the UUID described in &sect;2) is not sent
+      with crash reports. <strong>IP address is also stripped:</strong>
+      IFMachine initialises the Sentry SDK with
+      <code>sendDefaultPii = false</code>, so Sentry does not store
+      your IP address with the crash report.
+    </p>
+    <p>
+      Sentry's own SDK generates and attaches a random installation
+      identifier of its own (separate from the IFMachine UUID), so it
+      can group multiple reports from the same device; that identifier
+      is not derived from your name, account, or any other personal
+      information.
+    </p>
+    <p>
+      Crash reports are sent over HTTPS (TLS) to Sentry's US-based
+      servers and retained by Sentry for 90 days, after which Sentry
+      automatically deletes the raw events (aggregated, de-identified
+      counts may be retained longer). Sentry's own privacy policy is
+      at <a href="https://sentry.io/privacy/">sentry.io/privacy/</a>.
+    </p>
+    <p>
+      <strong>Individual deletion of past crash reports is not
+      supported.</strong> IFMachine does not transmit any identifier
+      you or we could use to isolate your specific reports, and we do
+      not store anything that maps your install to your identity. This
+      is a deliberate privacy-protective choice: the data Sentry
+      receives is pseudonymous from our perspective, and the trade-off
+      is that individual deletion requests cannot be honoured. To stop
+      sending future crash data, uninstall the app or leave the
+      closed-testing program; existing reports auto-expire after 90
+      days.
+    </p>
+
+    <h2>6. Permissions</h2>
 
     <p>IFMachine requests two Android permissions:</p>
     <table>
@@ -216,7 +310,7 @@
       <tbody>
         <tr>
           <td><code>INTERNET</code></td>
-          <td>Cloud sync to your Google Drive (if enabled) and IFDB requests (when you initiate them)</td>
+          <td>Cloud sync to your Google Drive (if enabled), IFDB requests (when you initiate them), and Sentry crash reporting (always-on in the closed-testing build)</td>
         </tr>
         <tr>
           <td><code>ACCESS_NETWORK_STATE</code></td>
@@ -229,13 +323,17 @@
       calendar, or sensor permissions.
     </p>
 
-    <h2>6. Children's privacy</h2>
+    <h2>7. Children's privacy</h2>
 
     <p>
-      IFMachine does not knowingly collect personal information from
-      anyone, including children under 13. The app does not ask for age,
-      does not show advertising, and does not collect any data that would
-      identify a user.
+      The current closed-testing build of IFMachine is distributed by
+      invitation only and is not directed at or appropriate for
+      children under 13. The app does not ask for age, does not show
+      advertising, and does not knowingly solicit data from children.
+      Any crash data collected via Sentry (described in &sect;5) is
+      limited to the listed diagnostic and device data and is used
+      only for debugging; we do not attempt to identify individual
+      users.
     </p>
     <p>
       Some interactive-fiction games available through IFDB are written
@@ -244,63 +342,84 @@
       third-party game files as they would any other internet content.
     </p>
 
-    <h2>7. Data sharing</h2>
+    <h2>8. Data sharing</h2>
 
     <p>
-      We do not sell, rent, trade, or share your data with anyone. We
-      don't collect data we could share.
+      We do not sell, rent, trade, or transfer your data for
+      advertising, marketing, profiling, or behavioural analytics. We do
+      not run any servers that receive data from IFMachine.
     </p>
     <p>
-      The only third party that ever receives information
-      <em>from your use of IFMachine</em> is:
+      The third parties that receive information from your use of
+      IFMachine are:
     </p>
     <ul>
-      <li><strong>Google</strong>, when you enable Drive sync (saves
-        uploaded to your own Drive) or when you sign in to a Google
-        account through the system account picker.</li>
+      <li><strong>Google</strong>, when you enable Drive sync (the
+        per-story content listed in &sect;3 &mdash; saves, transcripts,
+        maps, and game-managed sidecar files &mdash; uploaded to your
+        own Drive) or when you sign in to a Google account through the
+        system account picker. The synced files live in your own Google
+        Drive, under your control; we do not see them. Drive sync is
+        off by default and requires you to enable it.</li>
       <li><strong>IFDB&nbsp;/ IFArchive</strong>, when you explicitly
-        search or download (request contents listed in &sect;4).</li>
+        search for a game, view cover art, or download a story file
+        (request contents listed in &sect;4). These are read-only
+        requests; we do not see them.</li>
+      <li><strong>Sentry</strong> (sentry.io, US region), when the app
+        crashes or hits an unhandled error, in the closed-testing
+        build. Sentry acts as a data processor on our behalf: we read
+        the crash reports it collects in order to diagnose and fix
+        bugs. The data Sentry receives is listed in &sect;5. We do not
+        combine crash data with any other information about you.</li>
     </ul>
-    <p>
-      In both cases, the data goes from your device directly to those
-      services; we do not see it.
-    </p>
 
-    <h2>8. Your choices</h2>
+    <h2>9. Your choices</h2>
 
     <ul>
+      <li><strong>Crash reporting</strong>: there is no in-app toggle in
+        the current closed-testing build (see &sect;5). To stop sending
+        crash data to Sentry, uninstall the app or leave the
+        closed-testing program.</li>
       <li><strong>Stop using cloud sync</strong>: turn it off in Settings.
-        Past saves remain in your Drive until you delete them.</li>
-      <li><strong>Delete your data</strong>: uninstalling IFMachine removes
-        all locally stored data (saves, settings, library, cover art,
-        logs). To delete cloud-synced saves, delete the synced folder in
-        your Google Drive.</li>
+        Files already uploaded (saves, transcripts, maps, sidecars)
+        remain in your Drive until you delete them.</li>
+      <li><strong>Delete your data</strong>: uninstalling IFMachine
+        removes all locally stored data (game files, saves and
+        autosaves, transcripts, maps, game-managed sidecars, library
+        metadata, cover art, debug log, settings). To delete
+        cloud-synced content, delete the synced folder in your Google
+        Drive. Crash data already sent to Sentry cannot be individually
+        deleted on request in the current build (see &sect;5); it
+        auto-expires after 90 days.</li>
       <li><strong>Use the app without an account</strong>: cloud sync is
-        opt-in. You can use every feature of IFMachine without ever
-        signing in.</li>
+        opt-in. You can use every feature of IFMachine without signing
+        in to Google.</li>
     </ul>
 
-    <h2>9. Changes to this policy</h2>
+    <h2>10. Changes to this policy</h2>
 
     <p>
       If we change this policy, we'll update the "Last updated" date at
       the top and publish the new version at this URL. Material changes
-      &mdash; for example, the future addition of crash reporting, error
-      metrics, or any other feature that transmits data off your device
-      &mdash; will be called out in the app's release notes. Where any
-      such change adds a data type, the Google Play Data Safety disclosure
-      for the app will be updated to match.
+      &mdash; for example, adding usage analytics, changing how crash
+      reporting works (e.g. adding an in-app toggle or attaching save
+      files to reports), or any other change to what data leaves the
+      device &mdash; will be called out in the app's release notes.
+      Where any such change adds a data type, the Google Play Data
+      Safety disclosure for the app will be updated to match.
     </p>
 
-    <h2>10. Contact</h2>
+    <h2>11. Contact</h2>
 
     <p>Questions about this policy can be sent to:</p>
     <p>
       <strong><a href="mailto:privacy@guppyinteractive.com">privacy@guppyinteractive.com</a></strong>
     </p>
     <p>
-      {{COMPANY_LEGAL_NAME}}<br>
-      {{COMPANY_MAILING_ADDRESS &mdash; match DUNS record}}
+      Guppy Interactive LLC<br>
+      10938 Vivaracho Way<br>
+      San Diego, CA 92124<br>
+      United States
     </p>
 
     <footer>
