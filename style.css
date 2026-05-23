@@ -134,6 +134,7 @@ footer nav a {
 .policy table {
   border-collapse: collapse;
   margin: 1rem 0;
+  width: 100%;
 }
 
 .policy table th,
@@ -141,6 +142,26 @@ footer nav a {
   border: 1px solid var(--border);
   padding: 0.5rem 0.75rem;
   text-align: left;
+  vertical-align: top;
+  word-break: break-word;
+}
+
+.policy .permissions {
+  margin: 1rem 0;
+  max-width: 65ch;
+}
+
+.policy .permissions dt {
+  margin-top: 0.75rem;
+  font-weight: 600;
+}
+
+.policy .permissions dt:first-child {
+  margin-top: 0;
+}
+
+.policy .permissions dd {
+  margin: 0.25rem 0 0 1.25rem;
 }
 
 .policy code {

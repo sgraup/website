@@ -223,12 +223,14 @@
     </p>
     <p>
       Story files you download from IFDB may be hosted on third-party
-      archives (such as the Internet Fiction Archive). Downloading a
-      game causes IFMachine to retrieve the file from that host using a
-      standard HTTPS request. We do not control ifdb.org or the archives
-      it links to; their respective privacy policies apply to data they
-      receive (which from IFMachine is limited to the request
-      information above).
+      archives (such as the
+      <a href="https://www.ifarchive.org/">Interactive Fiction
+      Archive</a>). Downloading a game causes IFMachine to retrieve the
+      file from that host using a standard HTTPS request. We do not
+      control <a href="https://ifdb.org/">ifdb.org</a> or the archives
+      it links to; their respective terms and privacy practices apply
+      to data they receive (which from IFMachine is limited to the
+      request information above).
     </p>
 
     <h2>5. Crash reporting (Sentry, closed-testing build)</h2>
@@ -303,21 +305,15 @@
     <h2>6. Permissions</h2>
 
     <p>IFMachine requests two Android permissions:</p>
-    <table>
-      <thead>
-        <tr><th>Permission</th><th>Purpose</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>INTERNET</code></td>
-          <td>Cloud sync to your Google Drive (if enabled), IFDB requests (when you initiate them), and Sentry crash reporting (always-on in the closed-testing build)</td>
-        </tr>
-        <tr>
-          <td><code>ACCESS_NETWORK_STATE</code></td>
-          <td>Detect whether you are on Wi-Fi vs. cellular, so cloud sync can respect a Wi-Fi-only preference</td>
-        </tr>
-      </tbody>
-    </table>
+    <dl class="permissions">
+      <dt><code>INTERNET</code></dt>
+      <dd>Cloud sync to your Google Drive (if enabled), IFDB requests
+        (when you initiate them), and Sentry crash reporting (always-on
+        in the closed-testing build).</dd>
+      <dt><code>ACCESS_NETWORK_STATE</code></dt>
+      <dd>Detect whether you are on Wi-Fi vs. cellular, so cloud sync
+        can respect a Wi-Fi-only preference.</dd>
+    </dl>
     <p>
       We do not request location, camera, microphone, contacts, phone,
       calendar, or sensor permissions.
@@ -365,7 +361,7 @@
         search for a game, view cover art, or download a story file
         (request contents listed in &sect;4). These are read-only
         requests; we do not see them.</li>
-      <li><strong>Sentry</strong> (sentry.io, US region), when the app
+      <li><strong>Sentry</strong> (<a href="https://sentry.io">sentry.io</a>, US region), when the app
         crashes or hits an unhandled error, in the closed-testing
         build. Sentry acts as a data processor on our behalf: we read
         the crash reports it collects in order to diagnose and fix
